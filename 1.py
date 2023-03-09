@@ -1,55 +1,59 @@
 import functools
 
-# 输入数据
+# 输入
 task_num = int(input())
-ranges = []
 
-while(task_num>0):
-    input_str = input()
-    input_list = [int(x) for x in input_str.split(" ")]
-    ranges.append(input_list)
+ranges = []
+while task_num > 0:
+    range_list = list(map(int, input().split(" ")))
+    ranges.append(range_list)
     task_num -= 1
 
-print(ranges)
-
 # 区间排序
-def comp1(x,y):
-    return x[0]-y[0]
 
-ranges = sorted(ranges,key=functools.cmp_to_key(comp1))
-print(ranges)
+def comp(x, y):
+    return x[0] - y[0]
+
+ranges = sorted(ranges, key=functools.cmp_to_key(comp))
 
 # 点排序
-def comp(x,y):
-    return x-y
-
 points = set()
-for single_range in ranges:
-    points.add(single_range[0])
-    points.add(single_range[1])
-points = sorted(points,key=functools.cmp_to_key(comp))
+for i in ranges:
+    points.add(i[0])
+    points.add(i[1])
 
-print(points)
+points = sorted(points)
 
-# 在区间内的时间点，result=该区间核 + 交集区间核 ，否则跳过该区间
+# 运算
+
 result = 0
 ignore = set()
 for point in points:
-    curr_num = 0
+    current_num = 0
+    print("point:",point)
     for i in range(len(ranges)):
-        if (i in ignore):
+        if i in ignore:
             continue
         start = ranges[i][0]
         end = ranges[i][1]
         count = ranges[i][2]
-        # 取左闭右开区间
-        if (point < start):
+
+        if point < start:
             break
-        elif(point < end):
-            curr_num += count
+        elif point < end:
+            current_num += count
         else:
             ignore.add(i)
-    result = max(result,curr_num)
+        
+    result = max(result, current_num)
 
 print(result)
+
+
         
+
+
+
+
+
+
