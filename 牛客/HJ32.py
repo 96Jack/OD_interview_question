@@ -19,38 +19,38 @@
 
 
 
-s = input()
-out = 0
+# s = input()
+# out = 0
 
 
-for i in range(0, len(s)):  # 双指针
-    # 奇数回文子串
-    k = i - 1
-    j = i + 1
-    len_ABA = 1
-    while k >= 0 and j < len(s):
-        if s[k] == s[j]:
-            print(s[k:j+1])
-            k -= 1
-            j += 1
-            len_ABA += 2
-        else:
-            break
+# for i in range(0, len(s)):  # 双指针
+#     # 奇数回文子串
+#     k = i - 1
+#     j = i + 1
+#     len_ABA = 1
+#     while k >= 0 and j < len(s):
+#         if s[k] == s[j]:
+#             print(s[k:j+1])
+#             k -= 1
+#             j += 1
+#             len_ABA += 2
+#         else:
+#             break
 
-    # 偶数回文子串 
-    k = i
-    j = i + 1
-    len_ABBA = 0
-    while k >= 0 and j < len(s):
-        if s[k] == s[j]:
-            print(s[k:j+1])
-            k -= 1
-            j += 1
-            len_ABBA += 2
-        else:
-            break
+#     # 偶数回文子串 
+#     k = i
+#     j = i + 1
+#     len_ABBA = 0
+#     while k >= 0 and j < len(s):
+#         if s[k] == s[j]:
+#             print(s[k:j+1])
+#             k -= 1
+#             j += 1
+#             len_ABBA += 2
+#         else:
+#             break
       
-    now_len = max(len_ABA, len_ABBA)
-    if out <now_len:
-        out = now_len
-print(out)
+#     now_len = max(len_ABA, len_ABBA)
+#     if out <now_len:
+#         out = now_len
+# print(out)
