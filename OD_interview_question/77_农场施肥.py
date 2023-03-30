@@ -25,7 +25,7 @@ else:
     fields = sorted(fields)
     left = 0
     # right为最大值
-    right = fields[len(fields) - 1]
+    right = fields[len(fields) - 1]  
 
     result = -1
     while (left +1 < right):
@@ -33,7 +33,7 @@ else:
         k = int(math.ceil(float(left + right) / 2))
         print(k)
         res = cal(k, fields)
-    # 二分法：若天数多则说明中值小，需要更大的效能，取右边大区间
+        # 二分法：若天数多则说明中值小，需要更大的效能，取右边大区间
         if (res - n > 0):
             left = k
         else:
