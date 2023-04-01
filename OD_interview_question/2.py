@@ -5,13 +5,10 @@ import functools
  
 #处理输入
 s = input().split()
- 
 #第一步，单词内部调整
 new_list = ["".join(sorted(s[i])) for i in range(len(s))]
 print(new_list)
-
 #自定义排序函数
-
 def comp(x, y):
     if new_list.count(x) > new_list.count(y):
         return -1
@@ -27,6 +24,5 @@ def comp(x, y):
             return -1
     else:
         return -1    
-
 re = sorted(new_list, key=functools.cmp_to_key(comp))
 print(" ".join(re))

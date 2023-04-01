@@ -1,49 +1,35 @@
-import functools
+# coding:utf-8 
+#处理输入
+m, n = [int(x) for x in input().split()]
+weights = [int(x) for x in input().split()]
+#对重量排序处理
+weights = sorted(weights)
+#第二步，左右指针向中间移动
+re = 0
+l = 0
+r = len(weights) - 1
+# 隐藏条件：
+# 1. 人的重量一定小于等于车的重量
+# 2. 一辆车最到坐两个人
+# 正好全部配对
+while l < r:
+    if weights[l] == m:
+        l += 1
+        re += 1
+        continue 
+    elif weights[r] == m:
+        r -= 1
+        re += 1
+        continue
+    elif weights[l] + weights[r] <= m:
+        l += 1
+        r -= 1
+        re += 1
+        continue
+# 除了多出的一个人，其他全部配对成功
+if l == r:
+    re += 1
+print(re)
 
-input_str = input().split(" ")
-
-# 单词间排序
-new_str = []
-for world in input_str:
-    new_str.append("".join(sorted(world)))
-
-print(new_str)
-
-# 单词出现次数;字典排序
-str_count = {}
-for i in new_str:
-    if i in str_count:    
-        str_count[i] += 1
-    else:
-        str_count[i] = 1
-
-# 排序函数
-# 1.单词出现的次数，降序
-# 2.次数相同，按单词长度升序
-# 3.次数和单词数均相同，按字典升序 
-def comp(a,b):
-    if (a[1] > b[1]):
-        return -1
-    elif (a[1] == b[1]):
-        if (len(a[0]) > len(b[0])):
-            return 1
-        elif (len(a[0]) == len(b[0])):
-            if (a[0] > b[0]):
-                return 1
-            else:
-                return -1
-        else:
-            return -1
-    else:
-        return 1
-
-list1 = sorted(str_count.items(),key=functools.cmp_to_key(comp))
-
-print(list1)
-
-res_str = ""
-for item in list1:
-    for i in range(item[1]):
-        res_str += item[0] + " "
-
-print(res_str)
+    
+        
