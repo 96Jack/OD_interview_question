@@ -1,4 +1,12 @@
-str_bin = bin(int(input()))
-str_bin = str_bin[2::].rjust(32, "0")
-ip = [str(int(str_bin[i*8:(i+1)*8],2)) for i in range(0,4)]
-print(".".join(ip))
+s = input()
+
+def func(s):
+    if len(s) <= 1:
+        return [s]
+    l = []
+    for i in range(len(s)):
+        for j in func(s[0:i] + s[i+1:]):
+            l.append(s[i] + j)
+    return l
+
+print(func(s))

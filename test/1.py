@@ -3,6 +3,7 @@ def all_char(s):
         return [s]
     c_list = []
     for i in range(len(s)):
+        # 去除i字符，让i字符和剩余的字符组合
         for j in all_char(s[0:i] + s[i+1:]):
             c_list.append(s[i] + j )
     return c_list
