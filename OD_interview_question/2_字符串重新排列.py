@@ -13,10 +13,6 @@ for single_str in input_list:
     new_list.append("".join(sorted(single_str, reverse=False)))
  
  
-# 排序函数
-# 1.单词出现的次数，降序
-# 2.次数相同，按单词长度升序
-# 3.次数和单词数均相同，按字典升序 
 #自定义排序函数，a,b为(str,count)
 def comp(a, b):
     if (a[1] > b[1]):
@@ -46,9 +42,8 @@ print (str_count)
  
 list1= sorted(str_count.items(),key=functools.cmp_to_key(comp))
  
-# 所有出现的字符串的拼接
 res_str = ""
 for item in list1:
     for i in range(item[1]):
         res_str += item[0] + " "
-print(res_str)
+print (res_str)
