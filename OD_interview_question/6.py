@@ -1,29 +1,25 @@
-import queue
+start, n = input().split()
 
-ranges = [[0, 5, 3], [1, 2, 1], [3, 6, 3]]
+all_node = {}
+nodes = []
+for i in range(int(n)):
+    start_path , node, end_path = [x for x in input().split()]
+    all_node[start_path] = node
+    all_node[node] = end_path
+    if start_path == start:
+        nodes.append(node)
 
-pq = queue.PriorityQueue()
-res = 0
-temp_res = 0
-for i in range(len(ranges)):
-    while pq.qsize() > 0:
-        print("pq.qsize:",pq.qsize())
-        top = pq.queue[0]
-        print("top:", top)
+next_node = nodes[0]
+for i in range(int(n)):
+    i_path = all_node.get(next_node)
+    if i_path == '-1':
+        break
+    else:
+        second_node = all_node.get(i_path)
+        next_node = second_node
+        nodes.append(next_node)
 
-        if top[0] < ranges[i][0]:
-            poll = pq.get() 
-            temp_res -= poll[1]
-            print("poll:",poll)
-            print("temp_res:", temp_res)
-        else:
-            break
+print(nodes)
+index = len(nodes) // 2
+print(nodes[index])
 
-    print("*"*10,ranges[i][1], ranges[i][2])
-    pq.put((ranges[i][1], ranges[i][2]))
-    temp_res += ranges[i][2]
-    print(r"temp_res:{temp_res}  res:{res}")
-
-    if temp_res > res:
-        res = temp_res
-print(res)
