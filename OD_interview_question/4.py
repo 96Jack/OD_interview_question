@@ -1,48 +1,23 @@
-# 输入
+m ,n  = [int(x) for x in input().split(" ")]
+#构造边的数据结构
+i = 0
+bianyuan = []
+while i< m:
+    bianyuan.append([int(x) for x in input().split()])
+    i += 1
+print(bianyuan)
 
-# m：限重
-# n: 人数
-input_1 = list(map(int,input().split(" ")))
-m,n = input_1
-
-# try except 复习 weight <= m；weights的数量控制；len(weights) =n
-while 1:
-    weights = [int(x) if int(x)<= m else -1 for x in input().split(" ")]
-
-    try :
-        if -1 not in weights:
+result = 0
+# 1 << 4 相当与 二进制数 10000， 遍历这个数字就可以将所有染色情况全部表达出来，（1表示红色， 0表示黑色）
+for i in range((2**m)):
+    mark = True
+    for j in range(n):
+        color_1 = (i >> (m-bianyuan[j][0]) & 1)
+        color_2 = (i >> (m-bianyuan[j][1]) & 1)
+        if color_1 == 1 and color_2 == 1:
+            mark = False
             break
-    except ValueError:
-        raise("value error")
 
-    print(weights)
-# 先对体重内部排序
-weights = sorted(weights,reverse=False)
-
-# 左右指针向中间移动
-left = 0
-right = len(weights) -1
-
-# 结果
-min_bikes = 0
-
-# 当前的重量
-curr_weight= weights[left] + weights[right]
-
-# 一辆车最多可载两人，人的重量< 车的载重
-
-while (left < right):
-    if (curr_weight > m):
-        right -= 1
-        min_bikes += 1
-        curr_weight = weights[left] + weights[right]
-    else:
-        right -= 1
-        left += 1
-        min_bikes += 1
-        curr_weight = weights[left] + weights[right]
-
-if (left == right):
-    min_bikes += 1
-print(min_bikes)
-
+    if mark:
+        result += 1
+print (result)
