@@ -2,7 +2,7 @@
 # 待用尺举法解
 
 s = input()
-mother_str = "WASD"
+mother_str = "WASD"     
 if len(s) == 4:
     count = 4
     son_strs = mother_str
