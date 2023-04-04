@@ -1,17 +1,32 @@
-logs = [int(x) for x in input().split()]
-
-max_num = logs[0]
-for i in range(len(logs)):
-    log_list = logs[0:i+1]
-    print(log_list)
-    num_list = [i for i in range(len(log_list))][::-1]
-    print(num_list)
-    dis = [log_list[i]*num_list[i] for i in range(len(log_list)-1)]
-    print(dis)
-    if sum(log_list) <= 100:
-        max_num = max(max_num, sum(log_list)-sum(dis))
+# coding:utf-8
+import functools
+ 
+def comp(a, b):
+    if a[0] == b[0]:
+        return b[1] - a[1]
     else:
-        max_num = max(max_num, 100 - sum(dis))
+        return b[0] - a[0]
+ 
+ 
+#处理输入
+logs = [int(x) for x in input().split(" ")]
+#加分
+plus_score = [0 for x in range(len(logs))]
+plus_score[0] = logs[0]
+ 
+# 减分
+minus_score = [0 for x in range(len(logs))]
+ 
+result = [0 for x in range(len(logs))]
+result[0] = logs[0]
+ 
+for i in range(1, len(logs)):
+    plus_score[i] = min(100, plus_score[i - 1] + logs[i])
+    minus_score[i] = minus_score[i - 1] + plus_score[i - 1]
+    result[i] = plus_score[i] - minus_score[i]
+ 
+    if (plus_score[i] >= 100):
         break
-
-print(max_num)
+ 
+print(max(result))
+ 
