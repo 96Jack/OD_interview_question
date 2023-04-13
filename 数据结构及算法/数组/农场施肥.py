@@ -11,15 +11,13 @@ else:
     fields = sorted(fields)
     left, right = 0, fields[-1]
     result = -1
-    while left +1 < right:
+    while left  < right -1:
         middle = math.ceil((left + right)/2)
         day = [math.ceil(field/middle) for field in fields]
         print(day)
         result = sum(day)
         if result - days > 0:
             left = middle
-        # elif result - days < 0:
-        #     right = middle
         else:
             right = middle
             result = middle

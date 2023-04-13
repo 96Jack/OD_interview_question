@@ -1,0 +1,18 @@
+#!/bin/bash
+
+declare -A site
+site["google"]="www.google.com"
+site["runoob"]="www.runoob.com"
+site["taobao"]="www.taobao.com"
+
+
+echo ${site["google"]}
+echo "所有元素： ${site[*]}"
+echo "所有键：   ${!site[*]}"
+echo "长度:    ${#site[*]}"
+
+for var in ${!site[*]}
+do 
+    echo ${var}
+done
+
