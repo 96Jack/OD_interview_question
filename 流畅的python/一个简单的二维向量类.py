@@ -6,6 +6,7 @@ class Vector:
         self.y = y
 
     def __repr__(self) -> str:
+        # %r表示用repr()处理， 类似%s是用str()处理
         return "Vector(%r,%r)"%(self.x, self.y)
     
     def __abs__(self):

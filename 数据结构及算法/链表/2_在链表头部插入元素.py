@@ -8,6 +8,7 @@ class Linked_list():
         self.head = None
 
     def print_list(self):
+        # 链表的头部
         ptr = self.head
         while ptr:
             print(ptr.data)
