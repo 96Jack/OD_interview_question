@@ -12,6 +12,7 @@ struct STU{
 // }
 
 // 使用常量引用后，4个字节,节省空间
+// const 防止恶意修改
 void showSTU(const STU &temp){
     cout << "name : " << temp.name << endl << "age : " << temp.num << endl;
 }
