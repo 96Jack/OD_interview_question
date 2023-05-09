@@ -20,12 +20,30 @@ private:
     string m_name;
 };
 
-int main()
-{
-    // 实例化对象
+// 普通对象
+void testt01(){
     Stu student1;
     student1.setAge(20);
     student1.setName("lucy");
     student1.myShow();
+}
+
+// 指针对象
+void test02(){
+    Stu *s = new Stu;
+    s->setAge(18);
+    s->setName("bob");
+    s->myShow();
+    if (s!=NULL){
+        delete  s;
+        s = NULL;
+    }
+
+}
+int main()
+{
+    // 实例化对象
+    // testt01();
+    test02();
     return 0;
 }
