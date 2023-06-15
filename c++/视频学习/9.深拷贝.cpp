@@ -10,7 +10,7 @@ public:
     char *name;
 };
 
-void test01(){
+void test01(){ 
     Person p1;
     p1.name = new char[6];
     strcpy(p1.name,"lucy");
